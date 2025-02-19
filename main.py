@@ -11,7 +11,8 @@ from utils.utils import set_seed
 # DummyVectorEnv for Windows or Linux, SubprocVectorEnv for Linux
 from env import DummyVectorEnv,SubprocVectorEnv
 import platform
-
+from utils.make_dataset import *
+from rollout import rollout
 
 def load_agent(name):
     agent = {
@@ -63,8 +64,6 @@ def run(opts):
     # Do validation only
     if opts.test:
         # Testing
-        from utils.make_dataset import *
-        from rollout import rollout
         if opts.load_name is not None:
             opts.run_name = opts.load_name
         opts.log_dir = os.path.join('rollout_outputs', opts.run_name)
