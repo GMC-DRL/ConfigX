@@ -63,7 +63,7 @@ def run(opts):
     # Do validation only
     if opts.test:
         # Testing
-        from utils.make_dataset import make_taskset4test, make_protein_taskset, make_hpob_taskset
+        from utils.make_dataset import *
         from rollout import rollout
         if opts.load_name is not None:
             opts.run_name = opts.load_name
@@ -71,20 +71,13 @@ def run(opts):
         if not os.path.exists(opts.log_dir):
             os.makedirs(opts.log_dir)
 
-        
         # Load the validation datasets
-        validate_dataloader, test_dataloader=make_taskset4test(config=opts)
-        
-        # set_seed(opts.testseed)
-        # gbest_mean,std=rollout(validate_dataloader, opts, agent=agent, run_name=opts.run_name, epoch_id=opts.load_epoch)
-        # print(f'validate: gbest_mean:{gbest_mean}, std:{std}')
+        training_dataloader, test_dataloader = make_taskset(opts)
 
         set_seed(opts.testseed)
-        gbest_mean,std=rollout(test_dataloader,opts, agent=agent, run_name=opts.run_name, epoch_id=opts.load_epoch)
-        print(f'test: gbest_mean:{gbest_mean}, std:{std}')
-        # protein_dataloader = make_protein_taskset(opts)
-        # hpob_dataloader = make_hpob_taskset(opts)
-        
+        avg_best,sigma,rew=rollout(test_dataloader,opts, agent=agent, run_name=opts.run_name, epoch_id=opts.load_epoch)
+        print(f'test: gbest_mean:{gbest_mean}, std:{std}, Rewards: {rew}')
+
     else:  
         # configure tensorboard
         path = os.path.join(opts.log_dir, opts.run_name)
