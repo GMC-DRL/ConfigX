@@ -7,7 +7,7 @@ Here we provide sourcecodes of ConfigX, which has been recently accpeted by AAAI
 The PDF version of the paper is available [here](https://arxiv.org/abs/2412.07507). If you find our ConfigX useful, please cite it in your publications or projects.
 
 ```latex
-@inproceedings{guo2024configx,
+@inproceedings{guo2025configx,
   title={ConfigX: Modular Configuration for Evolutionary Algorithms via Multitask Reinforcement Learning},
   author={Guo, Hongshu and Ma, Zeyuan and Chen, Jiacheng and Ma, Yining and Cao, Zhiguang and Zhang, Xinglin and Gong, Yue-Jiao},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
